@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_penghuni');
             $table->unsignedBigInteger('id_rumah');
             $table->unsignedBigInteger('id_iuran');
             $table->integer('periode_bulan'); //bulan yang dibayar(1-12)
             $table->integer('periode_tahun'); 
             $table->date('tanggal_bayar'); 
             $table->enum('status_lunas',['lunas','belum']);
-            $table->foreign('id_penghuni')->references('id')->on('penghuni')->onDelete('cascade');
             $table->foreign('id_rumah')->references('id')->on('rumah')->onDelete('cascade');
             $table->foreign('id_iuran')->references('id')->on('iuran')->onDelete('cascade');
             $table->timestamps();
